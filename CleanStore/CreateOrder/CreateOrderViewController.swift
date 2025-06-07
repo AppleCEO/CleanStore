@@ -93,3 +93,16 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic 
         }
     }
 }
+
+extension CreateOrderViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if let index = textFields.firstIndex(of: textField) {
+            if index < textFields.count - 1 {
+                let nextTextField = textFields[index + 1]
+                nextTextField.becomeFirstResponder()
+            }
+        }
+        return true
+    }
+}
