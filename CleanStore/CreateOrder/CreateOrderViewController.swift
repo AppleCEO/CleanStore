@@ -85,9 +85,6 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic 
         let request = CreateOrder.FormatExpirationDate.Request(date: date)
         interactor?.formatExpirationDate(request: request)
     }
-    // MARK: Do something
-    
-    //@IBOutlet weak var nameTextField: UITextField!
     
     func configurePickers() {
         shippingMethodTextField.inputView = shippingMethodPicker
