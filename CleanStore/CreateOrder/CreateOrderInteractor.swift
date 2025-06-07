@@ -36,6 +36,6 @@ class CreateOrderInteractor: CreateOrderBusinessLogic, CreateOrderDataStore
     func formatExpirationDate(request: CreateOrder.FormatExpirationDate.Request)
     {
         let response = CreateOrder.FormatExpirationDate.Response(date: request.date)
-//        presenter?.presentExpirationDate(response)
+        presenter?.presentExpirationDate(response: response)
     }
 }

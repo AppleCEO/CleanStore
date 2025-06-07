@@ -13,10 +13,11 @@
 import UIKit
 
 protocol CreateOrderDisplayLogic: class {
-    func displaySomething(viewModel: CreateOrder.Something.ViewModel)
+    func displayExpirationDate(viewModel: CreateOrder.FormatExpirationDate.ViewModel)
 }
 
 class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic {
+    
     // MARK: Text fields
     @IBOutlet var textFields: [UITextField]!
     
@@ -101,6 +102,11 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic 
                 }
             }
         }
+    }
+    
+    func displayExpirationDate(viewModel: CreateOrder.FormatExpirationDate.ViewModel) {
+        let date = viewModel.date
+        expirationDateTextField.text = date
     }
 }
 
