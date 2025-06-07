@@ -82,4 +82,14 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic 
     func displaySomething(viewModel: CreateOrder.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            for textField in textFields {
+                if textField.isDescendant(of: cell) {
+                    textField.becomeFirstResponder()
+                }
+            }
+        }
+    }
 }
