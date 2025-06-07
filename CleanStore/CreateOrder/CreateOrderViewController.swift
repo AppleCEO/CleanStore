@@ -80,7 +80,9 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic 
     }
     
     @IBAction func expirationDatePickerValueChanged(sender: AnyObject) {
-        
+        let date = expirationDatePicker.date
+        let request = CreateOrder.FormatExpirationDate.Request(date: date)
+        interactor?.formatExpirationDate(request: request)
     }
     // MARK: Do something
     
@@ -88,10 +90,7 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic 
     
     func configurePickers() {
         shippingMethodTextField.inputView = shippingMethodPicker
-    }
-    
-    func displaySomething(viewModel: CreateOrder.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+        expirationDateTextField.inputView = expirationDatePicker
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
