@@ -14,7 +14,7 @@ import UIKit
 
 protocol CreateOrderBusinessLogic
 {
-  func doSomething(request: CreateOrder.Something.Request)
+    var shippingMethods: [String] { get }
 }
 
 protocol CreateOrderDataStore
@@ -26,16 +26,11 @@ class CreateOrderInteractor: CreateOrderBusinessLogic, CreateOrderDataStore
 {
   var presenter: CreateOrderPresentationLogic?
   var worker: CreateOrderWorker?
-  //var name: String = ""
+    var shippingMethods = [
+        "Standard Shipping",
+        "Two-Day Shipping ",
+        "One-Day Shipping "
+    ]
   
-  // MARK: Do something
   
-  func doSomething(request: CreateOrder.Something.Request)
-  {
-    worker = CreateOrderWorker()
-    worker?.doSomeWork()
-    
-    let response = CreateOrder.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
 }

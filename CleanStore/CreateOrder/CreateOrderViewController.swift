@@ -76,7 +76,7 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic 
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        doSomething()
+        configurePickers()
     }
     
     @IBAction func expirationDatePickerValueChanged(sender: AnyObject) {
@@ -86,9 +86,8 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic 
     
     //@IBOutlet weak var nameTextField: UITextField!
     
-    func doSomething() {
-        let request = CreateOrder.Something.Request()
-        interactor?.doSomething(request: request)
+    func configurePickers() {
+        shippingMethodTextField.inputView = shippingMethodPicker
     }
     
     func displaySomething(viewModel: CreateOrder.Something.ViewModel) {
@@ -116,5 +115,24 @@ extension CreateOrderViewController: UITextFieldDelegate {
             }
         }
         return true
+    }
+}
+
+extension CreateOrderViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return interactor?.shippingMethods.count ?? 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return interactor?.shippingMethods[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        shippingMethodTextField.text = interactor?.shippingMethods[row]
     }
 }
