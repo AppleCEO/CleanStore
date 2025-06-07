@@ -17,7 +17,18 @@ protocol CreateOrderDisplayLogic: class {
 }
 
 class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic {
+    // MARK: Text fields
     @IBOutlet var textFields: [UITextField]!
+    
+    // MARK: Shipping method
+    
+    @IBOutlet weak var shippingMethodTextField: UITextField!
+    @IBOutlet var shippingMethodPicker: UIPickerView!
+    
+    // MARK: Expiration date
+    
+    @IBOutlet weak var expirationDateTextField: UITextField!
+    @IBOutlet var expirationDatePicker: UIDatePicker!
     
     var interactor: CreateOrderBusinessLogic?
     var router: (NSObjectProtocol & CreateOrderRoutingLogic & CreateOrderDataPassing)?
@@ -68,7 +79,8 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic 
         doSomething()
     }
     
-    @IBAction func expirationDatePickerValueChanged(_ sender: UIDatePicker) {
+    @IBAction func expirationDatePickerValueChanged(sender: AnyObject) {
+        
     }
     // MARK: Do something
     
