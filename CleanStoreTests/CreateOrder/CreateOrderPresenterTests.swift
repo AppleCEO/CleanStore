@@ -13,7 +13,7 @@ final class CreateOrderPresenterTests: XCTestCase {
     override func setUpWithError() throws {
         setupCreateOrderPresenter()
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
@@ -21,7 +21,7 @@ final class CreateOrderPresenterTests: XCTestCase {
     func setupCreateOrderPresenter() {
         createOrderPresenter = CreateOrderPresenter()
     }
-
+    
     class CreateOrderDisplayLogicSpy: CreateOrderDisplayLogic {
         var displayExpirationDateCalled = false
         var formatExpirationDateViewModel: CreateOrder.FormatExpirationDate.ViewModel!
@@ -32,11 +32,38 @@ final class CreateOrderPresenterTests: XCTestCase {
         }
     }
     
+    class CreateOrderDisplayLogicMock: CreateOrderDisplayLogic {
+        // MARK: Method call expectations
+        var displayExpirationDateCalled = false
+        
+        // MARK: Argument expectations
+        var createOrder_formatExpirationDate_viewModel: CreateOrder.FormatExpirationDate.ViewModel!
+        
+        // MARK: Spied methods
+        func displayExpirationDate(viewModel: CreateOrder.FormatExpirationDate.ViewModel)
+        {
+            displayExpirationDateCalled = true
+            createOrder_formatExpirationDate_viewModel = viewModel
+        }
+        
+        // MARK: Verifications
+        func verifyDisplayExpirationDateIsCalled() -> Bool
+        {
+            return displayExpirationDateCalled
+        }
+        
+        func verifyExpirationDateIsFormattedAs(date: String) -> Bool
+        {
+            return createOrder_formatExpirationDate_viewModel.date == date
+        }
+    }
+    
+    
     func testPresentExpirationDateShouldConvertDateToString()
     {
         // Given
-        let createOrderDisplayLogicSpy = CreateOrderDisplayLogicSpy()
-        createOrderPresenter.viewController = createOrderDisplayLogicSpy
+        let createOrderDisplayLogicMock = CreateOrderDisplayLogicMock()
+        createOrderPresenter.viewController = createOrderDisplayLogicMock
         
         var dateComponents = DateComponents()
         dateComponents.year = 2007
@@ -50,21 +77,20 @@ final class CreateOrderPresenterTests: XCTestCase {
         createOrderPresenter.presentExpirationDate(response: response)
         
         // Then
-        let returnedDate = createOrderDisplayLogicSpy.formatExpirationDateViewModel.date
         let expectedDate = "6/29/07"
-        XCTAssertEqual(returnedDate, expectedDate, "Presenting an expiration date should convert date to string")
+        XCTAssert(createOrderDisplayLogicMock.verifyExpirationDateIsFormattedAs(date: expectedDate), "Presenting an expiration date should convert date to string")
     }
     
     func testPresentExpirationDateShouldAskViewControllerToDisplayDateString() {
         // Given
-        let createOrderDisplayLogicSpy = CreateOrderDisplayLogicSpy()
-        createOrderPresenter.viewController = createOrderDisplayLogicSpy
+        let createOrderDisplayLogicMock = CreateOrderDisplayLogicMock()
+        createOrderPresenter.viewController = createOrderDisplayLogicMock
         let response = CreateOrder.FormatExpirationDate.Response(date: Date())
         
         // When
         createOrderPresenter.presentExpirationDate(response: response)
         
         // Then
-        XCTAssert(createOrderDisplayLogicSpy.displayExpirationDateCalled, "Presenting an expiration date should ask view controller to display date string")
+        XCTAssert(createOrderDisplayLogicMock.verifyDisplayExpirationDateIsCalled(), "Presenting an expiration date should ask view controller to display date string")
     }
 }
