@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		B6FB36152DF5529500B13C6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B60A73F12DF05F720039DB10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B60A73F82DF05F720039DB10;
+			remoteInfo = CleanStore;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		B60A73F92DF05F720039DB10 /* CleanStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6FB36112DF5529500B13C6E /* CleanStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -18,6 +29,18 @@
 			);
 			target = B60A73F82DF05F720039DB10 /* CleanStore */;
 		};
+		B6FB362D2DF5542500B13C6E /* Exceptions for "CleanStore" folder in "CleanStoreTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CreateOrder/CreateOrderInteractor.swift,
+				CreateOrder/CreateOrderModels.swift,
+				CreateOrder/CreateOrderPresenter.swift,
+				CreateOrder/CreateOrderRouter.swift,
+				CreateOrder/CreateOrderViewController.swift,
+				CreateOrder/CreateOrderWorker.swift,
+			);
+			target = B6FB36102DF5529500B13C6E /* CleanStoreTests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -25,14 +48,27 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				B60A740B2DF05F730039DB10 /* Exceptions for "CleanStore" folder in "CleanStore" target */,
+				B6FB362D2DF5542500B13C6E /* Exceptions for "CleanStore" folder in "CleanStoreTests" target */,
 			);
 			path = CleanStore;
+			sourceTree = "<group>";
+		};
+		B6FB36122DF5529500B13C6E /* CleanStoreTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CleanStoreTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B60A73F62DF05F720039DB10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6FB360E2DF5529500B13C6E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				B60A73FB2DF05F720039DB10 /* CleanStore */,
+				B6FB36122DF5529500B13C6E /* CleanStoreTests */,
 				B60A73FA2DF05F720039DB10 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				B60A73F92DF05F720039DB10 /* CleanStore.app */,
+				B6FB36112DF5529500B13C6E /* CleanStoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +121,29 @@
 			productReference = B60A73F92DF05F720039DB10 /* CleanStore.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B6FB36102DF5529500B13C6E /* CleanStoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6FB36172DF5529500B13C6E /* Build configuration list for PBXNativeTarget "CleanStoreTests" */;
+			buildPhases = (
+				B6FB360D2DF5529500B13C6E /* Sources */,
+				B6FB360E2DF5529500B13C6E /* Frameworks */,
+				B6FB360F2DF5529500B13C6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6FB36162DF5529500B13C6E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B6FB36122DF5529500B13C6E /* CleanStoreTests */,
+			);
+			name = CleanStoreTests;
+			packageProductDependencies = (
+			);
+			productName = CleanStoreTests;
+			productReference = B6FB36112DF5529500B13C6E /* CleanStoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,6 +156,10 @@
 				TargetAttributes = {
 					B60A73F82DF05F720039DB10 = {
 						CreatedOnToolsVersion = 16.2;
+					};
+					B6FB36102DF5529500B13C6E = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = B60A73F82DF05F720039DB10;
 					};
 				};
 			};
@@ -113,12 +178,20 @@
 			projectRoot = "";
 			targets = (
 				B60A73F82DF05F720039DB10 /* CleanStore */,
+				B6FB36102DF5529500B13C6E /* CleanStoreTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B60A73F72DF05F720039DB10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6FB360F2DF5529500B13C6E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +208,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B6FB360D2DF5529500B13C6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B6FB36162DF5529500B13C6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B60A73F82DF05F720039DB10 /* CleanStore */;
+			targetProxy = B6FB36152DF5529500B13C6E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B60A740D2DF05F730039DB10 /* Debug */ = {
@@ -146,6 +234,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7RV9YTQB63;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CleanStore/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -174,6 +263,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7RV9YTQB63;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CleanStore/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -313,6 +403,42 @@
 			};
 			name = Release;
 		};
+		B6FB36182DF5529500B13C6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7RV9YTQB63;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Dominic.CleanStoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanStore.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CleanStore";
+			};
+			name = Debug;
+		};
+		B6FB36192DF5529500B13C6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7RV9YTQB63;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Dominic.CleanStoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanStore.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CleanStore";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -330,6 +456,15 @@
 			buildConfigurations = (
 				B60A740D2DF05F730039DB10 /* Debug */,
 				B60A740E2DF05F730039DB10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6FB36172DF5529500B13C6E /* Build configuration list for PBXNativeTarget "CleanStoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6FB36182DF5529500B13C6E /* Debug */,
+				B6FB36192DF5529500B13C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
