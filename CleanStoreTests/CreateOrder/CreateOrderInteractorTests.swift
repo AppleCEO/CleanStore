@@ -8,17 +8,22 @@
 import XCTest
 
 final class CreateOrderInteractorTests: XCTestCase {
-
+    var createOrderInteractor: CreateOrderInteractor!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        setupCreateOrderInteractor()
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
+    func setupCreateOrderInteractor() {
+        createOrderInteractor = CreateOrderInteractor()
+    }
+    
     // MARK: - Test doubles
-
+    
     class CreateOrderPresentationLogicSpy: CreateOrderPresentationLogic
     {
         var presentExpirationDateCalled = false
@@ -27,9 +32,9 @@ final class CreateOrderInteractorTests: XCTestCase {
             presentExpirationDateCalled = true
         }
     }
-
+    
     func testFormatExpirationDateShouldAskPresenterToFormatExpirationDate() {
-        let createOrderInteractor = CreateOrderInteractor()
+        createOrderInteractor = CreateOrderInteractor()
         
         // Given
         let createOrderPresentationLogicSpy = CreateOrderPresentationLogicSpy()
@@ -41,6 +46,23 @@ final class CreateOrderInteractorTests: XCTestCase {
         
         // Then
         XCTAssert(createOrderPresentationLogicSpy.presentExpirationDateCalled, "Formatting an expiration date should ask presenter to do it")
+    }
+    
+    func testShippingMethodsShouldReturnAllAvailableShippingMethods() {
+        createOrderInteractor = CreateOrderInteractor()
+        
+        // Given
+        let allAvailableShippingMethods = [
+            "Standard Shipping",
+            "Two-Day Shipping ",
+            "One-Day Shipping "
+        ]
+        
+        // When
+        let returnedShippingMethods = createOrderInteractor.shippingMethods
+        
+        // Then
+        XCTAssertEqual(returnedShippingMethods, allAvailableShippingMethods, "Shipping Methods should list all available shipping methods")
     }
     
 }
