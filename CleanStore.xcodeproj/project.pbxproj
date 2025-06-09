@@ -38,6 +38,12 @@
 				CreateOrder/CreateOrderRouter.swift,
 				CreateOrder/CreateOrderViewController.swift,
 				CreateOrder/CreateOrderWorker.swift,
+				ListOrders/ListOrdersInteractor.swift,
+				ListOrders/ListOrdersModels.swift,
+				ListOrders/ListOrdersPresenter.swift,
+				ListOrders/ListOrdersRouter.swift,
+				ListOrders/ListOrdersViewController.swift,
+				ListOrders/ListOrdersWorker.swift,
 			);
 			target = B6FB36102DF5529500B13C6E /* CleanStoreTests */;
 		};
