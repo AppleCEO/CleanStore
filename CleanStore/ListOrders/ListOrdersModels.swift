@@ -16,7 +16,7 @@ enum ListOrders
 {
   // MARK: Use cases
   
-  enum Something
+  enum FetchOrders
   {
     struct Request
     {

@@ -14,7 +14,7 @@ import UIKit
 
 protocol ListOrdersDisplayLogic: class
 {
-  func displaySomething(viewModel: ListOrders.Something.ViewModel)
+  func displaySomething(viewModel: ListOrders.FetchOrders.ViewModel)
 }
 
 class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
@@ -78,11 +78,11 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
   
   func doSomething()
   {
-    let request = ListOrders.Something.Request()
+    let request = ListOrders.FetchOrders.Request()
     interactor?.doSomething(request: request)
   }
   
-  func displaySomething(viewModel: ListOrders.Something.ViewModel)
+  func displaySomething(viewModel: ListOrders.FetchOrders.ViewModel)
   {
     //nameTextField.text = viewModel.name
   }

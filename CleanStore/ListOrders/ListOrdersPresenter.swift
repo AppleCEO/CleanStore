@@ -14,7 +14,7 @@ import UIKit
 
 protocol ListOrdersPresentationLogic
 {
-  func presentSomething(response: ListOrders.Something.Response)
+  func presentSomething(response: ListOrders.FetchOrders.Response)
 }
 
 class ListOrdersPresenter: ListOrdersPresentationLogic
@@ -23,9 +23,9 @@ class ListOrdersPresenter: ListOrdersPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: ListOrders.Something.Response)
+  func presentSomething(response: ListOrders.FetchOrders.Response)
   {
-    let viewModel = ListOrders.Something.ViewModel()
+    let viewModel = ListOrders.FetchOrders.ViewModel()
     viewController?.displaySomething(viewModel: viewModel)
   }
 }
