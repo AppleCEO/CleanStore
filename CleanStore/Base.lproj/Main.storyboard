@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9T4-9n-vPJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Sm3-Rh-bYd">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -15,15 +15,18 @@
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="Pbq-Gw-GCV" kind="relationship" relationship="rootViewController" id="kc2-GE-Md2"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rdw-Oc-Tzu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1421" y="-17"/>
         </scene>
-        <!--List Orders View Controller-->
+        <!--Orders-->
         <scene sceneID="DM9-K8-xtD">
             <objects>
-                <tableViewController storyboardIdentifier="ListOrdersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pbq-Gw-GCV" customClass="ListOrdersViewController" customModule="CleanStore" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ListOrdersViewController" title="Orders" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pbq-Gw-GCV" customClass="ListOrdersViewController" customModule="CleanStore" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="1SK-rR-sW9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,6 +46,13 @@
                             <outlet property="delegate" destination="Pbq-Gw-GCV" id="cg5-dF-xe2"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="hq0-51-41k">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Go-7L-0gt">
+                            <connections>
+                                <segue destination="9T4-9n-vPJ" kind="show" id="PM2-ky-JlL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aJF-A4-gIn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -810,7 +820,7 @@
                     </connections>
                 </datePicker>
             </objects>
-            <point key="canvasLocation" x="780.91603053435108" y="0.70422535211267612"/>
+            <point key="canvasLocation" x="123" y="6"/>
         </scene>
     </scenes>
     <resources>
