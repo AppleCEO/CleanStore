@@ -19,12 +19,27 @@ protocol ListOrdersPresentationLogic {
 class ListOrdersPresenter: ListOrdersPresentationLogic {
     weak var viewController: ListOrdersDisplayLogic?
     
+    let dateFormatter: DateFormatter = {
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateStyle = .short
+      dateFormatter.timeStyle = .none
+      return dateFormatter
+    }()
+    
+    let currencyFormatter: NumberFormatter = {
+      let currencyFormatter = NumberFormatter()
+      currencyFormatter.numberStyle = .currency
+      return currencyFormatter
+    }()
+    
     // MARK: Fetch Orders
     
     func presentOrders(response: ListOrders.FetchOrders.Response)
     {
         let displayOrders = response.orders.map({ order in
-            ListOrders.FetchOrders.ViewModel.DisplayedOrder(id: order.id!, date: order.date.description, email: order.email, name: order.lastName + order.firstName, total: order.total.stringValue)
+            let date = dateFormatter.string(from: order.date)
+            let total = currencyFormatter.string(from: order.total)
+            return ListOrders.FetchOrders.ViewModel.DisplayedOrder(id: order.id!, date: date, email: order.email, name: order.firstName + order.lastName, total: total!)
         })
         let viewModel = ListOrders.FetchOrders.ViewModel(displayedOrders: displayOrders)
         viewController?.displayOrders(viewModel: viewModel)
