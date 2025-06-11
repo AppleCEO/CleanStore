@@ -20,6 +20,8 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic {
     var interactor: ListOrdersBusinessLogic?
     var router: (NSObjectProtocol & ListOrdersRoutingLogic & ListOrdersDataPassing)?
     
+    var displayedOrders: [ListOrders.FetchOrders.ViewModel.DisplayedOrder] = []
+    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -75,6 +77,31 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic {
     }
     
     func displayOrders(viewModel: ListOrders.FetchOrders.ViewModel) {
-        //nameTextField.text = viewModel.name
+        displayedOrders = viewModel.displayedOrders
+        tableView.reloadData()
+    }
+}
+
+extension ListOrdersViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return displayedOrders.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let displayedOrder = displayedOrders[indexPath.row]
+        var cell = tableView.dequeueReusableCell(withIdentifier: "OrderTableViewCell")
+        if cell == nil {
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "OrderTableViewCell")
+        }
+        cell?.textLabel?.text = displayedOrder.date
+        cell?.detailTextLabel?.text = displayedOrder.total
+        return cell!
     }
 }

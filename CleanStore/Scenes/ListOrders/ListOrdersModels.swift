@@ -20,8 +20,18 @@ enum ListOrders
     struct Request {
     }
     struct Response {
+        var orders: [Order]
     }
     struct ViewModel {
+        struct DisplayedOrder
+        {
+          var id: String
+          var date: String
+          var email: String
+          var name: String
+          var total: String
+        }
+        var displayedOrders: [DisplayedOrder]
     }
   }
 }

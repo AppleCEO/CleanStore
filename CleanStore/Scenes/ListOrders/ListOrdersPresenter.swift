@@ -23,7 +23,10 @@ class ListOrdersPresenter: ListOrdersPresentationLogic {
     
     func presentOrders(response: ListOrders.FetchOrders.Response)
     {
-        let viewModel = ListOrders.FetchOrders.ViewModel()
+        let displayOrders = response.orders.map({ order in
+            ListOrders.FetchOrders.ViewModel.DisplayedOrder(id: order.id!, date: order.date.description, email: order.email, name: order.lastName + order.firstName, total: order.total.stringValue)
+        })
+        let viewModel = ListOrders.FetchOrders.ViewModel(displayedOrders: displayOrders)
         viewController?.displayOrders(viewModel: viewModel)
     }
 }

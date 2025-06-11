@@ -29,7 +29,7 @@ class ListOrdersInteractor: ListOrdersBusinessLogic, ListOrdersDataStore {
     
     func fetchOrders(request: ListOrders.FetchOrders.Request) {
         worker.fetchOrders { orders in
-            let response = ListOrders.FetchOrders.Response()
+            let response = ListOrders.FetchOrders.Response(orders: orders)
             self.presenter?.presentOrders(response: response)
         }
     }
