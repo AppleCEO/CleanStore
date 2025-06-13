@@ -14,7 +14,8 @@ import UIKit
 
 protocol CreateOrderDisplayLogic: class
 {
-    func displaySomething(viewModel: CreateOrder.Something.ViewModel)
+    func displayExpirationDate(viewModel: CreateOrder.FormatExpirationDate.ViewModel)
+    func displayOrderToEdit(viewModel: CreateOrder.EditOrder.ViewModel)
 }
 
 class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic
@@ -97,21 +98,87 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        doSomething()
+        configurePickers()
+        showOrderToEdit()
+    }
+    
+    func configurePickers()
+    {
+        shippingMethodTextField.inputView = shippingMethodPicker
+        expirationDateTextField.inputView = expirationDatePicker
     }
     
     // MARK: Do something
     
     //@IBOutlet weak var nameTextField: UITextField!
     
-    func doSomething()
-    {
-        let request = CreateOrder.Something.Request()
-        interactor?.doSomething(request: request)
+    func displayExpirationDate(viewModel: CreateOrder.FormatExpirationDate.ViewModel) {
+        let date = viewModel.date
+        expirationDateTextField.text = date
     }
     
-    func displaySomething(viewModel: CreateOrder.Something.ViewModel)
+    func showOrderToEdit()
     {
-        //nameTextField.text = viewModel.name
+        let request = CreateOrder.EditOrder.Request()
+        interactor?.showOrderToEdit(request: request)
+    }
+    
+    func displayOrderToEdit(viewModel: CreateOrder.EditOrder.ViewModel)
+    {
+        let orderFormFields = viewModel.orderFormFields
+        firstNameTextField.text = orderFormFields.firstName
+        lastNameTextField.text = orderFormFields.lastName
+        phoneTextField.text = orderFormFields.phone
+        emailTextField.text = orderFormFields.email
+        
+        billingAddressStreet1TextField.text = orderFormFields.billingAddressStreet1
+        billingAddressStreet2TextField.text = orderFormFields.billingAddressStreet2
+        billingAddressCityTextField.text = orderFormFields.billingAddressCity
+        billingAddressStateTextField.text = orderFormFields.billingAddressState
+        billingAddressZIPTextField.text = orderFormFields.billingAddressZIP
+        
+        creditCardNumberTextField.text = orderFormFields.paymentMethodCreditCardNumber
+        ccvTextField.text = orderFormFields.paymentMethodCVV
+        
+        shipmentAddressStreet1TextField.text = orderFormFields.shipmentAddressStreet1
+        shipmentAddressStreet2TextField.text = orderFormFields.shipmentAddressStreet2
+        shipmentAddressCityTextField.text = orderFormFields.shipmentAddressCity
+        shipmentAddressStateTextField.text = orderFormFields.shipmentAddressState
+        shipmentAddressZIPTextField.text = orderFormFields.shipmentAddressZIP
+        
+        shippingMethodPicker.selectRow(orderFormFields.shipmentMethodSpeed, inComponent: 0, animated: true)
+        shippingMethodTextField.text = orderFormFields.shipmentMethodSpeedString
+        
+        expirationDatePicker.date = orderFormFields.paymentMethodExpirationDate
+        expirationDateTextField.text = orderFormFields.paymentMethodExpirationDateString
+    }
+    
+    @IBAction func expirationDatePickerValueChanged(_ sender: Any)
+    {
+        let date = expirationDatePicker.date
+        let request = CreateOrder.FormatExpirationDate.Request(date: date)
+        interactor?.formatExpirationDate(request: request)
+    }
+}
+
+extension CreateOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int
+    {
+      return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
+      return interactor?.shippingMethods.count ?? 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    {
+      return interactor?.shippingMethods[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+      shippingMethodTextField.text = interactor?.shippingMethods[row]
     }
 }

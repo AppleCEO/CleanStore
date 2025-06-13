@@ -14,18 +14,58 @@ import UIKit
 
 protocol CreateOrderPresentationLogic
 {
-  func presentSomething(response: CreateOrder.Something.Response)
+    func presentOrderToEdit(response: CreateOrder.EditOrder.Response)
+    func presentExpirationDate(response: CreateOrder.FormatExpirationDate.Response)
 }
 
 class CreateOrderPresenter: CreateOrderPresentationLogic
 {
-  weak var viewController: CreateOrderDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: CreateOrder.Something.Response)
-  {
-    let viewModel = CreateOrder.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: CreateOrderDisplayLogic?
+    
+    let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        return dateFormatter
+    }()
+    
+    func presentOrderToEdit(response: CreateOrder.EditOrder.Response)
+    {
+        let orderToEdit = response.order
+        let viewModel = CreateOrder.EditOrder.ViewModel(
+            orderFormFields: CreateOrder.OrderFormFields(
+                firstName: orderToEdit.firstName,
+                lastName: orderToEdit.lastName,
+                phone: orderToEdit.phone,
+                email: orderToEdit.email,
+                billingAddressStreet1: orderToEdit.billingAddress.street1,
+                billingAddressStreet2: (orderToEdit.billingAddress.street2 != nil ? orderToEdit.billingAddress.street2! : ""),
+                billingAddressCity: orderToEdit.billingAddress.city,
+                billingAddressState: orderToEdit.billingAddress.state,
+                billingAddressZIP: orderToEdit.billingAddress.zip,
+                paymentMethodCreditCardNumber: orderToEdit.paymentMethod.creditCardNumber,
+                paymentMethodCVV: orderToEdit.paymentMethod.cvv,
+                paymentMethodExpirationDate: orderToEdit.paymentMethod.expirationDate,
+                paymentMethodExpirationDateString: dateFormatter.string(from: orderToEdit.paymentMethod.expirationDate),
+                shipmentAddressStreet1: orderToEdit.shipmentAddress.street1,
+                shipmentAddressStreet2: orderToEdit.shipmentAddress.street2 != nil ? orderToEdit.shipmentAddress.street2! : "",
+                shipmentAddressCity: orderToEdit.shipmentAddress.city,
+                shipmentAddressState: orderToEdit.shipmentAddress.state,
+                shipmentAddressZIP: orderToEdit.shipmentAddress.zip,
+                shipmentMethodSpeed: orderToEdit.shipmentMethod.speed.rawValue,
+                shipmentMethodSpeedString: orderToEdit.shipmentMethod.toString(),
+                id: orderToEdit.id,
+                date: orderToEdit.date,
+                total: orderToEdit.total
+            )
+        )
+        viewController?.displayOrderToEdit(viewModel: viewModel)
+    }
+    
+    func presentExpirationDate(response: CreateOrder.FormatExpirationDate.Response)
+    {
+        let date = dateFormatter.string(from: response.date)
+        let viewModel = CreateOrder.FormatExpirationDate.ViewModel(date: date)
+        viewController?.displayExpirationDate(viewModel: viewModel)
+    }
 }
