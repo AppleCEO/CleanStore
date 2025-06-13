@@ -14,47 +14,67 @@ import UIKit
 
 @objc protocol ListOrdersRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToCreateOrder(segue: UIStoryboardSegue?)
+    func routeToShowOrder(segue: UIStoryboardSegue?)
 }
 
 protocol ListOrdersDataPassing
 {
-  var dataStore: ListOrdersDataStore? { get }
+    var dataStore: ListOrdersDataStore? { get }
 }
 
 class ListOrdersRouter: NSObject, ListOrdersRoutingLogic, ListOrdersDataPassing
 {
-  weak var viewController: ListOrdersViewController?
-  var dataStore: ListOrdersDataStore?
-  
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
-
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: ListOrdersViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: ListOrdersDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+    weak var viewController: ListOrdersViewController?
+    var dataStore: ListOrdersDataStore?
+    
+    // MARK: Routing
+    
+    func routeToCreateOrder(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            let destinationVC = segue.destination as! CreateOrderViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToCreateOrder(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "CreateOrderViewController") as! CreateOrderViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToCreateOrder(source: dataStore!, destination: &destinationDS)
+            navigateToCreateOrder(source: viewController!, destination: destinationVC)
+        }
+    }
+    
+    func routeToShowOrder(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            let destinationVC = segue.destination as! ShowOrderViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToShowOrder(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "ShowOrderViewController") as! ShowOrderViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToShowOrder(source: dataStore!, destination: &destinationDS)
+            navigateToShowOrder(source: viewController!, destination: destinationVC)
+        }
+    }
+    
+    // MARK: Navigation
+    
+    func navigateToCreateOrder(source: ListOrdersViewController, destination: CreateOrderViewController) {
+        source.show(destination, sender: nil)
+    }
+    
+    func navigateToShowOrder(source: ListOrdersViewController, destination: ShowOrderViewController) {
+        source.show(destination, sender: nil)
+    }
+    
+    // MARK: Passing data
+    
+    func passDataToCreateOrder(source: ListOrdersDataStore, destination: inout CreateOrderDataStore) {
+    }
+    
+    func passDataToShowOrder(source: ListOrdersDataStore, destination: inout ShowOrderDataStore) {
+        let selectedRow = viewController?.tableView.indexPathForSelectedRow?.row
+        destination.order = source.orders?[selectedRow!]
+    }
 }
