@@ -22,6 +22,33 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic
     var interactor: CreateOrderBusinessLogic?
     var router: (NSObjectProtocol & CreateOrderRoutingLogic & CreateOrderDataPassing)?
     
+    @IBOutlet var textFields: [UITextField]!
+    @IBOutlet weak var shippingMethodTextField: UITextField!
+    @IBOutlet var shippingMethodPicker: UIPickerView!
+    @IBOutlet weak var expirationDateTextField: UITextField!
+    @IBOutlet var expirationDatePicker: UIDatePicker!
+    
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    
+    // MARK: Payment info
+    @IBOutlet weak var billingAddressStreet1TextField: UITextField!
+    @IBOutlet weak var billingAddressStreet2TextField: UITextField!
+    @IBOutlet weak var billingAddressCityTextField: UITextField!
+    @IBOutlet weak var billingAddressStateTextField: UITextField!
+    @IBOutlet weak var billingAddressZIPTextField: UITextField!
+    
+    @IBOutlet weak var creditCardNumberTextField: UITextField!
+    @IBOutlet weak var ccvTextField: UITextField!
+    
+    // MARK: Shipping info
+    @IBOutlet weak var shipmentAddressStreet1TextField: UITextField!
+    @IBOutlet weak var shipmentAddressStreet2TextField: UITextField!
+    @IBOutlet weak var shipmentAddressCityTextField: UITextField!
+    @IBOutlet weak var shipmentAddressStateTextField: UITextField!
+    @IBOutlet weak var shipmentAddressZIPTextField: UITextField!
     
     // MARK: Object lifecycle
     
