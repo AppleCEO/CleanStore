@@ -14,18 +14,36 @@ import UIKit
 
 protocol ShowOrderPresentationLogic
 {
-  func presentSomething(response: ShowOrder.Something.Response)
+    func presentOrder(response: ShowOrder.GetOrder.Response)
 }
 
 class ShowOrderPresenter: ShowOrderPresentationLogic
 {
-  weak var viewController: ShowOrderDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: ShowOrder.Something.Response)
-  {
-    let viewModel = ShowOrder.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: ShowOrderDisplayLogic?
+    
+    let dateFormatter: DateFormatter = {
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateStyle = .short
+      dateFormatter.timeStyle = .none
+      return dateFormatter
+    }()
+    
+    let currencyFormatter: NumberFormatter = {
+      let currencyFormatter = NumberFormatter()
+      currencyFormatter.numberStyle = .currency
+      return currencyFormatter
+    }()
+    
+    func presentOrder(response: ShowOrder.GetOrder.Response)
+    {
+        let order = response.order
+        let viewModel = ShowOrder.GetOrder.ViewModel(
+            id: order?.id,
+            date: dateFormatter.string(from: order!.date),
+            email: order?.email,
+            name: order!.firstName + order!.lastName,
+            total: currencyFormatter.string(from: order!.total)
+        )
+        viewController?.displayOrder(viewModel: viewModel)
+    }
 }

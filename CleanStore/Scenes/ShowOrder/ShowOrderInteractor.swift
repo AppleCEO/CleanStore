@@ -14,7 +14,7 @@ import UIKit
 
 protocol ShowOrderBusinessLogic
 {
-  func doSomething(request: ShowOrder.Something.Request)
+    func getOrder(request: ShowOrder.GetOrder.Request)
 }
 
 protocol ShowOrderDataStore
@@ -24,18 +24,15 @@ protocol ShowOrderDataStore
 
 class ShowOrderInteractor: ShowOrderBusinessLogic, ShowOrderDataStore
 {
-  var presenter: ShowOrderPresentationLogic?
-  var worker: ShowOrderWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: ShowOrder.Something.Request)
-  {
-    worker = ShowOrderWorker()
-    worker?.doSomeWork()
+    var order: Order!
     
-    let response = ShowOrder.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    var presenter: ShowOrderPresentationLogic?
+    
+    // MARK: Do something
+    
+    func getOrder(request: ShowOrder.GetOrder.Request)
+    {
+        let response = ShowOrder.GetOrder.Response(order: order)
+        presenter?.presentOrder(response: response)
+    }
 }

@@ -66,24 +66,29 @@ class ShowOrderViewController: UIViewController, ShowOrderDisplayLogic
     
     // MARK: View lifecycle
     
-    override func viewDidLoad()
+    override func viewWillAppear(_ animated: Bool)
     {
-        super.viewDidLoad()
-        doSomething()
+      super.viewWillAppear(animated)
+      getOrder()
     }
     
-    // MARK: Do something
+    @IBOutlet weak var orderIDLabel: UILabel!
+    @IBOutlet weak var orderDateLabel: UILabel!
+    @IBOutlet weak var orderEmailLabel: UILabel!
+    @IBOutlet weak var orderNameLabel: UILabel!
+    @IBOutlet weak var orderTotalLabel: UILabel!
     
-    //@IBOutlet weak var nameTextField: UITextField!
-    
-    func doSomething()
+    func getOrder()
     {
-        let request = ShowOrder.Something.Request()
-        interactor?.doSomething(request: request)
+        let request = ShowOrder.GetOrder.Request()
+        interactor?.getOrder(request: request)
     }
     
-    func displaySomething(viewModel: ShowOrder.Something.ViewModel)
-    {
-        //nameTextField.text = viewModel.name
+    func displayOrder(viewModel: ShowOrder.GetOrder.ViewModel) {
+        orderIDLabel.text =  viewModel.id
+        orderDateLabel.text = viewModel.date
+        orderEmailLabel.text = viewModel.email
+        orderNameLabel.text = viewModel.name
+        orderTotalLabel.text = viewModel.total
     }
 }

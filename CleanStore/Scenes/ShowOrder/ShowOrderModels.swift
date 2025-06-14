@@ -23,9 +23,15 @@ enum ShowOrder
     }
     struct Response
     {
+        var order: Order?
     }
     struct ViewModel
     {
+        var id: String?
+        var date: String?
+        var email: String?
+        var name: String?
+        var total: String?
     }
   }
 }
