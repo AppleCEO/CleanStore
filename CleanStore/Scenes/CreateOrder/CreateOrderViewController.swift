@@ -16,6 +16,7 @@ protocol CreateOrderDisplayLogic: class
 {
     func displayExpirationDate(viewModel: CreateOrder.FormatExpirationDate.ViewModel)
     func displayOrderToEdit(viewModel: CreateOrder.EditOrder.ViewModel)
+    func displayCreatedOrder(viewModel: CreateOrder.CreateOrder.ViewModel)
 }
 
 class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic
@@ -159,6 +160,58 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic
         let request = CreateOrder.FormatExpirationDate.Request(date: date)
         interactor?.formatExpirationDate(request: request)
     }
+    
+    func displayCreatedOrder(viewModel: CreateOrder.CreateOrder.ViewModel) {
+        if viewModel.order != nil {
+            router?.routeToListOrders(segue: nil)
+        }
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any)
+    {
+        let firstName = firstNameTextField.text!
+        let lastName = lastNameTextField.text!
+        let phone = phoneTextField.text!
+        let email = emailTextField.text!
+        
+        // MARK: Payment info
+        let billingAddressStreet1 = billingAddressStreet1TextField.text!
+        let billingAddressStreet2 = billingAddressStreet2TextField.text!
+        let billingAddressCity = billingAddressCityTextField.text!
+        let billingAddressState = billingAddressStateTextField.text!
+        let billingAddressZIP = billingAddressZIPTextField.text!
+        
+        let paymentMethodCreditCardNumber = creditCardNumberTextField.text!
+        let paymentMethodCVV = ccvTextField.text!
+        let paymentMethodExpirationDate = expirationDatePicker.date
+        let paymentMethodExpirationDateString = ""
+        
+        // MARK: Shipping info
+        let shipmentAddressStreet1 = shipmentAddressStreet1TextField.text!
+        let shipmentAddressStreet2 = shipmentAddressStreet2TextField.text!
+        let shipmentAddressCity = shipmentAddressCityTextField.text!
+        let shipmentAddressState = shipmentAddressStateTextField.text!
+        let shipmentAddressZIP = shipmentAddressZIPTextField.text!
+        
+        let shipmentMethodSpeed = shippingMethodPicker.selectedRow(inComponent: 0)
+        let shipmentMethodSpeedString = ""
+        
+        // MARK: Misc
+        var id: String? = nil
+        var date = Date()
+        var total = NSDecimalNumber.notANumber
+        
+//        if let orderToEdit = interactor?.orderToEdit {
+//          id = orderToEdit.id
+//          date = orderToEdit.date
+//          total = orderToEdit.total
+//          let request = CreateOrder.UpdateOrder.Request(orderFormFields: CreateOrder.OrderFormFields(firstName: firstName, lastName: lastName, phone: phone, email: email, billingAddressStreet1: billingAddressStreet1, billingAddressStreet2: billingAddressStreet2, billingAddressCity: billingAddressCity, billingAddressState: billingAddressState, billingAddressZIP: billingAddressZIP, paymentMethodCreditCardNumber: paymentMethodCreditCardNumber, paymentMethodCVV: paymentMethodCVV, paymentMethodExpirationDate: paymentMethodExpirationDate, paymentMethodExpirationDateString: paymentMethodExpirationDateString, shipmentAddressStreet1: shipmentAddressStreet1, shipmentAddressStreet2: shipmentAddressStreet2, shipmentAddressCity: shipmentAddressCity, shipmentAddressState: shipmentAddressState, shipmentAddressZIP: shipmentAddressZIP, shipmentMethodSpeed: shipmentMethodSpeed, shipmentMethodSpeedString: shipmentMethodSpeedString, id: id, date: date, total: total))
+//          interactor?.updateOrder(request: request)
+//        } else {
+          let request = CreateOrder.CreateOrder.Request(orderFormFields: CreateOrder.OrderFormFields(firstName: firstName, lastName: lastName, phone: phone, email: email, billingAddressStreet1: billingAddressStreet1, billingAddressStreet2: billingAddressStreet2, billingAddressCity: billingAddressCity, billingAddressState: billingAddressState, billingAddressZIP: billingAddressZIP, paymentMethodCreditCardNumber: paymentMethodCreditCardNumber, paymentMethodCVV: paymentMethodCVV, paymentMethodExpirationDate: paymentMethodExpirationDate, paymentMethodExpirationDateString: paymentMethodExpirationDateString, shipmentAddressStreet1: shipmentAddressStreet1, shipmentAddressStreet2: shipmentAddressStreet2, shipmentAddressCity: shipmentAddressCity, shipmentAddressState: shipmentAddressState, shipmentAddressZIP: shipmentAddressZIP, shipmentMethodSpeed: shipmentMethodSpeed, shipmentMethodSpeedString: shipmentMethodSpeedString, id: id, date: date, total: total))
+          interactor?.createOrder(request: request)
+        }
+//    }
 }
 
 extension CreateOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource {

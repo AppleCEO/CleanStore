@@ -82,4 +82,20 @@ enum CreateOrder
             var orderFormFields: OrderFormFields
         }
     }
+    
+    enum CreateOrder
+    {
+        struct Request
+        {
+            var orderFormFields: OrderFormFields
+        }
+        struct Response
+        {
+            var order: Order?
+        }
+        struct ViewModel
+        {
+            var order: Order?
+        }
+    }
 }

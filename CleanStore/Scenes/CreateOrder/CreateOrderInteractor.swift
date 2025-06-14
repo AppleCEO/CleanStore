@@ -17,6 +17,7 @@ protocol CreateOrderBusinessLogic
     var shippingMethods: [String] { get }
     func showOrderToEdit(request: CreateOrder.EditOrder.Request)
     func formatExpirationDate(request: CreateOrder.FormatExpirationDate.Request)
+    func createOrder(request: CreateOrder.CreateOrder.Request)
 }
 
 protocol CreateOrderDataStore
@@ -51,5 +52,12 @@ class CreateOrderInteractor: CreateOrderBusinessLogic, CreateOrderDataStore
     {
         let response = CreateOrder.FormatExpirationDate.Response(date: request.date)
         presenter?.presentExpirationDate(response: response)
+    }
+    
+    func createOrder(request: CreateOrder.CreateOrder.Request) {
+        let orderFormFields = request.orderFormFields
+        worker.createOrder(orderToCreate: Order(firstName: orderFormFields.firstName, lastName: orderFormFields.lastName, phone: orderFormFields.phone, email: orderFormFields.email, billingAddress: Address(street1: orderFormFields.billingAddressStreet1, street2: orderFormFields.billingAddressStreet2, city: orderFormFields.billingAddressCity, state: orderFormFields.billingAddressState, zip: orderFormFields.billingAddressZIP), paymentMethod: PaymentMethod(creditCardNumber: orderFormFields.paymentMethodCreditCardNumber, expirationDate: orderFormFields.paymentMethodExpirationDate, cvv: orderFormFields.paymentMethodCVV), shipmentAddress: Address(street1: orderFormFields.shipmentAddressStreet1, street2: orderFormFields.shipmentAddressStreet2, city: orderFormFields.shipmentAddressCity, state: orderFormFields.shipmentAddressState, zip: orderFormFields.shipmentAddressZIP), shipmentMethod: ShipmentMethod(speed: ShipmentMethod.ShippingSpeed(rawValue: orderFormFields.shipmentMethodSpeed)!), date: orderFormFields.date, total: orderFormFields.total)) { order in
+            self.presenter?.presentCreatedOrder(response: .init(order: order))
+        }
     }
 }
