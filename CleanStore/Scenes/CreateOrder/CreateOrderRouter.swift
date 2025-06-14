@@ -44,6 +44,21 @@ class CreateOrderRouter: NSObject, CreateOrderRoutingLogic, CreateOrderDataPassi
         }
     }
     
+    func routeToShowOrder(segue: UIStoryboardSegue?)
+    {
+        if let segue = segue {
+            let destinationVC = segue.destination as! ShowOrderViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToShowOrder(source: dataStore!, destination: &destinationDS)
+        } else {
+            let index = viewController!.navigationController!.viewControllers.count - 2
+            let destinationVC = viewController?.navigationController?.viewControllers[index] as! ShowOrderViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToShowOrder(source: dataStore!, destination: &destinationDS)
+            navigateToShowOrder(source: viewController!, destination: destinationVC)
+        }
+    }
+    
     // MARK: Navigation
     
     func navigateToListOrders(source: CreateOrderViewController, destination: ListOrdersViewController)
@@ -51,10 +66,19 @@ class CreateOrderRouter: NSObject, CreateOrderRoutingLogic, CreateOrderDataPassi
       source.show(destination, sender: nil)
     }
     
+    func navigateToShowOrder(source: CreateOrderViewController, destination: ShowOrderViewController)
+    {
+      source.navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: Passing data
     
     func passDataToListOrders(source: CreateOrderDataStore, destination: inout ListOrdersDataStore)
     {
-//      destination.name = source.name
+    }
+    
+    func passDataToShowOrder(source: CreateOrderDataStore, destination: inout ShowOrderDataStore)
+    {
+      destination.order = source.orderToEdit
     }
 }

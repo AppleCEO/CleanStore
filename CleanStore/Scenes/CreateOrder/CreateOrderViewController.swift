@@ -17,6 +17,7 @@ protocol CreateOrderDisplayLogic: class
     func displayExpirationDate(viewModel: CreateOrder.FormatExpirationDate.ViewModel)
     func displayOrderToEdit(viewModel: CreateOrder.EditOrder.ViewModel)
     func displayCreatedOrder(viewModel: CreateOrder.CreateOrder.ViewModel)
+    func displayUpdatedOrder(viewModel: CreateOrder.UpdateOrder.ViewModel)
 }
 
 class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic
@@ -164,6 +165,8 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic
     func displayCreatedOrder(viewModel: CreateOrder.CreateOrder.ViewModel) {
         if viewModel.order != nil {
             router?.routeToListOrders(segue: nil)
+        } else {
+            showOrderFailureAlert(title: "Failed to create order", message: "Please correct your order and submit again.")
         }
     }
     
@@ -201,17 +204,33 @@ class CreateOrderViewController: UITableViewController, CreateOrderDisplayLogic
         var date = Date()
         var total = NSDecimalNumber.notANumber
         
-//        if let orderToEdit = interactor?.orderToEdit {
-//          id = orderToEdit.id
-//          date = orderToEdit.date
-//          total = orderToEdit.total
-//          let request = CreateOrder.UpdateOrder.Request(orderFormFields: CreateOrder.OrderFormFields(firstName: firstName, lastName: lastName, phone: phone, email: email, billingAddressStreet1: billingAddressStreet1, billingAddressStreet2: billingAddressStreet2, billingAddressCity: billingAddressCity, billingAddressState: billingAddressState, billingAddressZIP: billingAddressZIP, paymentMethodCreditCardNumber: paymentMethodCreditCardNumber, paymentMethodCVV: paymentMethodCVV, paymentMethodExpirationDate: paymentMethodExpirationDate, paymentMethodExpirationDateString: paymentMethodExpirationDateString, shipmentAddressStreet1: shipmentAddressStreet1, shipmentAddressStreet2: shipmentAddressStreet2, shipmentAddressCity: shipmentAddressCity, shipmentAddressState: shipmentAddressState, shipmentAddressZIP: shipmentAddressZIP, shipmentMethodSpeed: shipmentMethodSpeed, shipmentMethodSpeedString: shipmentMethodSpeedString, id: id, date: date, total: total))
-//          interactor?.updateOrder(request: request)
-//        } else {
+        if let orderToEdit = interactor?.orderToEdit {
+          id = orderToEdit.id
+          date = orderToEdit.date
+          total = orderToEdit.total
+          let request = CreateOrder.UpdateOrder.Request(orderFormFields: CreateOrder.OrderFormFields(firstName: firstName, lastName: lastName, phone: phone, email: email, billingAddressStreet1: billingAddressStreet1, billingAddressStreet2: billingAddressStreet2, billingAddressCity: billingAddressCity, billingAddressState: billingAddressState, billingAddressZIP: billingAddressZIP, paymentMethodCreditCardNumber: paymentMethodCreditCardNumber, paymentMethodCVV: paymentMethodCVV, paymentMethodExpirationDate: paymentMethodExpirationDate, paymentMethodExpirationDateString: paymentMethodExpirationDateString, shipmentAddressStreet1: shipmentAddressStreet1, shipmentAddressStreet2: shipmentAddressStreet2, shipmentAddressCity: shipmentAddressCity, shipmentAddressState: shipmentAddressState, shipmentAddressZIP: shipmentAddressZIP, shipmentMethodSpeed: shipmentMethodSpeed, shipmentMethodSpeedString: shipmentMethodSpeedString, id: id, date: date, total: total))
+          interactor?.updateOrder(request: request)
+        } else {
           let request = CreateOrder.CreateOrder.Request(orderFormFields: CreateOrder.OrderFormFields(firstName: firstName, lastName: lastName, phone: phone, email: email, billingAddressStreet1: billingAddressStreet1, billingAddressStreet2: billingAddressStreet2, billingAddressCity: billingAddressCity, billingAddressState: billingAddressState, billingAddressZIP: billingAddressZIP, paymentMethodCreditCardNumber: paymentMethodCreditCardNumber, paymentMethodCVV: paymentMethodCVV, paymentMethodExpirationDate: paymentMethodExpirationDate, paymentMethodExpirationDateString: paymentMethodExpirationDateString, shipmentAddressStreet1: shipmentAddressStreet1, shipmentAddressStreet2: shipmentAddressStreet2, shipmentAddressCity: shipmentAddressCity, shipmentAddressState: shipmentAddressState, shipmentAddressZIP: shipmentAddressZIP, shipmentMethodSpeed: shipmentMethodSpeed, shipmentMethodSpeedString: shipmentMethodSpeedString, id: id, date: date, total: total))
           interactor?.createOrder(request: request)
         }
-//    }
+    }
+    
+    private func showOrderFailureAlert(title: String, message: String)
+    {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        showDetailViewController(alertController, sender: nil)
+    }
+    
+    func displayUpdatedOrder(viewModel: CreateOrder.UpdateOrder.ViewModel) {
+        if viewModel.order != nil {
+            router?.routeToListOrders(segue: nil)
+        } else {
+            showOrderFailureAlert(title: "Failed to create order", message: "Please correct your order and submit again.")
+        }
+    }
 }
 
 extension CreateOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource {

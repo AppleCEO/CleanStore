@@ -17,6 +17,7 @@ protocol CreateOrderPresentationLogic
     func presentOrderToEdit(response: CreateOrder.EditOrder.Response)
     func presentExpirationDate(response: CreateOrder.FormatExpirationDate.Response)
     func presentCreatedOrder(response: CreateOrder.CreateOrder.Response)
+    func presentUpdatedOrder(response: CreateOrder.UpdateOrder.Response)
 }
 
 class CreateOrderPresenter: CreateOrderPresentationLogic
@@ -71,6 +72,10 @@ class CreateOrderPresenter: CreateOrderPresentationLogic
     }
     
     func presentCreatedOrder(response: CreateOrder.CreateOrder.Response) {
+        viewController?.displayCreatedOrder(viewModel: CreateOrder.CreateOrder.ViewModel(order: response.order))
+    }
+    
+    func presentUpdatedOrder(response: CreateOrder.UpdateOrder.Response) {
         viewController?.displayCreatedOrder(viewModel: CreateOrder.CreateOrder.ViewModel(order: response.order))
     }
 }
