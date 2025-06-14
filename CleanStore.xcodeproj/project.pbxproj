@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,12 +16,6 @@
 		7152835122136C09004602FF /* OrdersWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152835022136C09004602FF /* OrdersWorker.swift */; };
 		71528354221372BA004602FF /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71528353221372BA004602FF /* Order.swift */; };
 		7152835722137458004602FF /* OrdersMemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152835622137458004602FF /* OrdersMemStore.swift */; };
-		7152835F22137C9B004602FF /* ShowOrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152835922137C9B004602FF /* ShowOrderPresenter.swift */; };
-		7152836022137C9B004602FF /* ShowOrderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152835A22137C9B004602FF /* ShowOrderWorker.swift */; };
-		7152836122137C9B004602FF /* ShowOrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152835B22137C9B004602FF /* ShowOrderRouter.swift */; };
-		7152836222137C9B004602FF /* ShowOrderModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152835C22137C9B004602FF /* ShowOrderModels.swift */; };
-		7152836322137C9B004602FF /* ShowOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152835D22137C9B004602FF /* ShowOrderViewController.swift */; };
-		7152836422137C9B004602FF /* ShowOrderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152835E22137C9B004602FF /* ShowOrderInteractor.swift */; };
 		71F123232214E0C70009FC03 /* TheLittleMocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F123212214E0C70009FC03 /* TheLittleMocker.swift */; };
 		71F123242214E0C70009FC03 /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F123222214E0C70009FC03 /* Seeds.swift */; };
 		71F1232A2214E2720009FC03 /* OrdersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F123292214E2720009FC03 /* OrdersAPI.swift */; };
@@ -92,12 +86,6 @@
 		7152835022136C09004602FF /* OrdersWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersWorker.swift; sourceTree = "<group>"; };
 		71528353221372BA004602FF /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		7152835622137458004602FF /* OrdersMemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersMemStore.swift; sourceTree = "<group>"; };
-		7152835922137C9B004602FF /* ShowOrderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOrderPresenter.swift; sourceTree = "<group>"; };
-		7152835A22137C9B004602FF /* ShowOrderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOrderWorker.swift; sourceTree = "<group>"; };
-		7152835B22137C9B004602FF /* ShowOrderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOrderRouter.swift; sourceTree = "<group>"; };
-		7152835C22137C9B004602FF /* ShowOrderModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOrderModels.swift; sourceTree = "<group>"; };
-		7152835D22137C9B004602FF /* ShowOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOrderViewController.swift; sourceTree = "<group>"; };
-		7152835E22137C9B004602FF /* ShowOrderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOrderInteractor.swift; sourceTree = "<group>"; };
 		71F123212214E0C70009FC03 /* TheLittleMocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheLittleMocker.swift; sourceTree = "<group>"; };
 		71F123222214E0C70009FC03 /* Seeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 		71F123292214E2720009FC03 /* OrdersAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersAPI.swift; sourceTree = "<group>"; };
@@ -129,6 +117,10 @@
 		B68BA0212DFA3DA300BB3EC9 /* CreateOrderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderRouter.swift; sourceTree = "<group>"; };
 		B68BA0222DFA3DA300BB3EC9 /* CreateOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B66EC8D82DFD64780042936C /* ShowOrder */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ShowOrder; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		715283002213143A004602FF /* Frameworks */ = {
@@ -218,9 +210,9 @@
 		71528334221315DB004602FF /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B66EC8D82DFD64780042936C /* ShowOrder */,
 				B68BA01D2DFA3D8600BB3EC9 /* CreateOrder */,
 				B68B9FCF2DF8ECE400BB3EC9 /* ListOrders */,
-				7152835822137C7A004602FF /* ShowOrder */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -251,19 +243,6 @@
 				71F123292214E2720009FC03 /* OrdersAPI.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		7152835822137C7A004602FF /* ShowOrder */ = {
-			isa = PBXGroup;
-			children = (
-				7152835D22137C9B004602FF /* ShowOrderViewController.swift */,
-				7152835E22137C9B004602FF /* ShowOrderInteractor.swift */,
-				7152835922137C9B004602FF /* ShowOrderPresenter.swift */,
-				7152835C22137C9B004602FF /* ShowOrderModels.swift */,
-				7152835A22137C9B004602FF /* ShowOrderWorker.swift */,
-				7152835B22137C9B004602FF /* ShowOrderRouter.swift */,
-			);
-			path = ShowOrder;
 			sourceTree = "<group>";
 		};
 		71F1231B2214E0650009FC03 /* Scenes */ = {
@@ -363,6 +342,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				B66EC8D82DFD64780042936C /* ShowOrder */,
+			);
 			name = CleanStore;
 			productName = CleanStore;
 			productReference = 715283032213143A004602FF /* CleanStore.app */;
@@ -380,6 +362,9 @@
 			);
 			dependencies = (
 				715283192213143D004602FF /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B66EC8D82DFD64780042936C /* ShowOrder */,
 			);
 			name = CleanStoreTests;
 			productName = CleanStoreTests;
@@ -487,18 +472,12 @@
 				B68B9FD92DF8ED0200BB3EC9 /* ListOrdersPresenter.swift in Sources */,
 				B68B9FDA2DF8ED0200BB3EC9 /* ListOrdersViewController.swift in Sources */,
 				B68B9FDB2DF8ED0200BB3EC9 /* ListOrdersRouter.swift in Sources */,
-				7152836122137C9B004602FF /* ShowOrderRouter.swift in Sources */,
 				71528354221372BA004602FF /* Order.swift in Sources */,
-				7152836022137C9B004602FF /* ShowOrderWorker.swift in Sources */,
-				7152836222137C9B004602FF /* ShowOrderModels.swift in Sources */,
-				7152835F22137C9B004602FF /* ShowOrderPresenter.swift in Sources */,
 				71F123402214EA580009FC03 /* ManagedOrder+CoreDataClass.swift in Sources */,
 				71F1232D2214E30E0009FC03 /* CleanStore.xcdatamodeld in Sources */,
-				7152836422137C9B004602FF /* ShowOrderInteractor.swift in Sources */,
 				715283072213143A004602FF /* AppDelegate.swift in Sources */,
 				71F123432214EAD40009FC03 /* OrdersCoreDataStore.swift in Sources */,
 				71F1232A2214E2720009FC03 /* OrdersAPI.swift in Sources */,
-				7152836322137C9B004602FF /* ShowOrderViewController.swift in Sources */,
 				7152835122136C09004602FF /* OrdersWorker.swift in Sources */,
 				7152835722137458004602FF /* OrdersMemStore.swift in Sources */,
 				71F123412214EA580009FC03 /* ManagedOrder+CoreDataProperties.swift in Sources */,

@@ -79,6 +79,6 @@ class CreateOrderRouter: NSObject, CreateOrderRoutingLogic, CreateOrderDataPassi
     
     func passDataToShowOrder(source: CreateOrderDataStore, destination: inout ShowOrderDataStore)
     {
-      destination.order = source.orderToEdit
+        destination.order = source.orderToEdit
     }
 }

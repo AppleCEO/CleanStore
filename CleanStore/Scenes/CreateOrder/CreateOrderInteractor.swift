@@ -24,7 +24,6 @@ protocol CreateOrderBusinessLogic
 
 protocol CreateOrderDataStore
 {
-    //var name: String { get set }
     var orderToEdit: Order? { get set }
 }
 
