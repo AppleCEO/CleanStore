@@ -69,17 +69,17 @@ class ListOrdersViewController: UITableViewController, ListOrdersDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
+    fetchOrdersOnLoad()
   }
   
   // MARK: Do something
   
   //@IBOutlet weak var nameTextField: UITextField!
   
-  func doSomething()
+  func fetchOrdersOnLoad()
   {
     let request = ListOrders.FetchOrders.Request()
-    interactor?.doSomething(request: request)
+      interactor?.fetchOrders(request: request)
   }
   
   func displaySomething(viewModel: ListOrders.FetchOrders.ViewModel)

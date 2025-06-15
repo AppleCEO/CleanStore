@@ -32,6 +32,7 @@
 		B6FB362D2DF5542500B13C6E /* Exceptions for "CleanStore" folder in "CleanStoreTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"/Localized: Main.storyboard",
 				CreateOrder/CreateOrderInteractor.swift,
 				CreateOrder/CreateOrderModels.swift,
 				CreateOrder/CreateOrderPresenter.swift,
