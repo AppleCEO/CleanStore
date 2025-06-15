@@ -51,6 +51,7 @@
 		B68BA02C2DFA3DA300BB3EC9 /* CreateOrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68BA0202DFA3DA300BB3EC9 /* CreateOrderPresenter.swift */; };
 		B68BA02D2DFA3DA300BB3EC9 /* CreateOrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68BA0212DFA3DA300BB3EC9 /* CreateOrderRouter.swift */; };
 		B68BA02E2DFA3DA300BB3EC9 /* CreateOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68BA0222DFA3DA300BB3EC9 /* CreateOrderViewController.swift */; };
+		B6B2E9192DFEEEC5000CCCEF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B6B2E9182DFEEEC5000CCCEF /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6B2E9192DFEEEC5000CCCEF /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +426,9 @@
 				Base,
 			);
 			mainGroup = 715282FA2213143A004602FF;
+			packageReferences = (
+				B6B2E9172DFEEEC5000CCCEF /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 715283042213143A004602FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -836,6 +841,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B6B2E9172DFEEEC5000CCCEF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B6B2E9182DFEEEC5000CCCEF /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6B2E9172DFEEEC5000CCCEF /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		71F1232B2214E30E0009FC03 /* CleanStore.xcdatamodeld */ = {
