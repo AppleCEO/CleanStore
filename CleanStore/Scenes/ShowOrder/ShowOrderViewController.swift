@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol ShowOrderDisplayLogic: class
 {
@@ -52,6 +53,41 @@ class ShowOrderViewController: UIViewController, ShowOrderDisplayLogic
         router.dataStore = interactor
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        makeConstrants()
+    }
+    
+    private func makeConstrants() {
+        view.addSubview(orderIDLabel)
+        view.addSubview(orderDateLabel)
+        view.addSubview(orderEmailLabel)
+        view.addSubview(orderNameLabel)
+        view.addSubview(orderTotalLabel)
+        
+        orderIDLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.centerY.equalTo(view).offset(-100)
+        }
+        orderDateLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.top.equalTo(orderIDLabel.snp.bottom).offset(10)
+        }
+        orderEmailLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.top.equalTo(orderDateLabel.snp.bottom).offset(10)
+        }
+        orderNameLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.top.equalTo(orderEmailLabel.snp.bottom).offset(10)
+        }
+        orderTotalLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.top.equalTo(orderNameLabel.snp.bottom).offset(10)
+        }
+    }
+    
     // MARK: Routing
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -72,11 +108,11 @@ class ShowOrderViewController: UIViewController, ShowOrderDisplayLogic
       getOrder()
     }
     
-    @IBOutlet weak var orderIDLabel: UILabel!
-    @IBOutlet weak var orderDateLabel: UILabel!
-    @IBOutlet weak var orderEmailLabel: UILabel!
-    @IBOutlet weak var orderNameLabel: UILabel!
-    @IBOutlet weak var orderTotalLabel: UILabel!
+    let orderIDLabel = UILabel()
+    let orderDateLabel = UILabel()
+    let orderEmailLabel = UILabel()
+    let orderNameLabel = UILabel()
+    let orderTotalLabel = UILabel()
     
     func getOrder()
     {

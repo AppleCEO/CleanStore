@@ -50,8 +50,7 @@ class ListOrdersRouter: NSObject, ListOrdersRoutingLogic, ListOrdersDataPassing
             var destinationDS = destinationVC.router!.dataStore!
             passDataToShowOrder(source: dataStore!, destination: &destinationDS)
         } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let destinationVC = storyboard.instantiateViewController(withIdentifier: "ShowOrderViewController") as! ShowOrderViewController
+            let destinationVC = ShowOrderViewController()
             var destinationDS = destinationVC.router!.dataStore!
             passDataToShowOrder(source: dataStore!, destination: &destinationDS)
             navigateToShowOrder(source: viewController!, destination: destinationVC)

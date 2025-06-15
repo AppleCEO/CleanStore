@@ -38,11 +38,11 @@ class ShowOrderPresenter: ShowOrderPresentationLogic
     {
         let order = response.order
         let viewModel = ShowOrder.GetOrder.ViewModel(
-            id: order?.id,
-            date: dateFormatter.string(from: order!.date),
-            email: order?.email,
-            name: order!.firstName + order!.lastName,
-            total: currencyFormatter.string(from: order!.total)
+            id: "Order ID: " + (order?.id ?? ""),
+            date: "Order Date: " + dateFormatter.string(from: order!.date),
+            email: "Email Address: " + (order?.email ?? ""),
+            name: "Your Name: " + order!.firstName + order!.lastName,
+            total: "Order Total: " + (currencyFormatter.string(from: order!.total) ?? "")
         )
         viewController?.displayOrder(viewModel: viewModel)
     }
