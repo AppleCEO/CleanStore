@@ -104,4 +104,8 @@ extension ListOrdersViewController {
         cell?.detailTextLabel?.text = displayedOrder.total
         return cell!
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        router?.routeToShowOrder(segue: nil)
+    }
 }
